@@ -6,9 +6,7 @@
 #include <thread>
 #include <functional>	/* For std::function */
 
-/* Timer class with on-load init */
-/* Intended to run a given block (lambda) on a periodic basis at a given interval */
-/* Templated version */
+/* Timer class with on-load init. Intended to run a given block (lambda) on a periodic basis at a given interval */
 
 template <typename T, typename F>
 class Timer {
