@@ -12,7 +12,7 @@ template <typename T, typename F>
 class Timer {
 public:
 	Timer(T p_interval, F p_exec) : m_interval(p_interval), m_exec(p_exec) {
-		std::thread([&]() { while (m_running.load(std::memory_order_relaxed)) {
+		std::thread([=]() { while (m_running.load(std::memory_order_relaxed)) {
 					std::unique_lock<std::mutex> tlock(m_conditional_mutex);
 					if (!m_conditional_lock.wait_for(tlock, std::chrono::seconds(m_interval),
 						[this]() { return !m_running.load(std::memory_order_acquire); }))
